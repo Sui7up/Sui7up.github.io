@@ -1,0 +1,384 @@
+/*FUENTES*/
+@import url("https://fonts.googleapis.com/css2?family=Yellowtail&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Gloria+Hallelujah&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+/*VARIABLES*/
+/*MIXING*/
+/*DATOS GENERALES*/
+* {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: white;
+}
+
+body {
+  background-image: url("../images/fondo.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Raleway', sans-serif;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+.derecha {
+  text-align: right;
+}
+
+.centrado {
+  margin: auto;
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.titulo {
+  color: #5cc0da;
+}
+
+/*HEADER*/
+header {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 20vh;
+  width: 100%;
+}
+
+header .nombre {
+  padding: 3% 0 0 5%;
+  color: white;
+  position: relative;
+  font-size: 70px;
+  font-family: 'Cookie', cursive;
+}
+
+header nav {
+  z-index: 2;
+}
+
+/*MAIN*/
+/*INDEX*/
+#Index {
+  height: 680;
+}
+
+#Index #row1 #columnaFoto {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#Index #row1 #columnaFoto img {
+  margin-top: 30px;
+  width: 100%;
+  border: 4px solid white;
+}
+
+#Index #row1 #columnaDescripcion {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#Index #row1 #columnaDescripcion .row #columnaDescripcion2 {
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-top: 30px;
+}
+
+#Index #row1 #columnaDescripcion .row #columnaDescripcion2 #titulo {
+  margin: auto;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+#Index #row1 #columnaDescripcion .row #columnaDescripcion2 #descripcion {
+  margin: auto;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+/*ALGUNOS TRABAJOS*/
+#AlgunosTrabajos {
+  height: 680px;
+}
+
+#AlgunosTrabajos .row {
+  text-align: center;
+  padding-top: 15%;
+}
+
+#AlgunosTrabajos .row .col-12 {
+  margin: 20px 0 20px 0;
+}
+
+#AlgunosTrabajos .row .col-12 .container {
+  width: 100%;
+  height: 25vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 1100px;
+  margin: auto;
+}
+
+#AlgunosTrabajos .row .col-12 .container .box {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #fff;
+}
+
+#AlgunosTrabajos .row .col-12 .container .box img {
+  width: 100%;
+  height: 100%;
+}
+
+#AlgunosTrabajos .row .col-12 .container .box .capa {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+#AlgunosTrabajos .row .col-12 .container .box:hover .capa {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+#JS .row {
+  margin: 50px 0 50px;
+  padding: 20px;
+  text-align: center;
+}
+
+#JS .row .colTexto {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 500px;
+}
+
+#JS .row .colTexto .titulo {
+  margin: auto;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+#JS .row .colTexto .descripcion {
+  margin: auto;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+#JS .row .colTextoPrincipal {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+
+#JS .row img {
+  margin-top: 30px;
+  width: 100%;
+}
+
+#PowerApps {
+  margin: auto;
+}
+
+#PowerApps #carouselExampleIndicators {
+  margin: auto;
+}
+
+#PowerApps #row4 #carouselExampleIndicators {
+  width: 100%;
+}
+
+#PowerApps .row {
+  margin: 50px 0 50px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+#PowerApps .row #carouselExampleIndicators {
+  width: 50%;
+}
+
+#PowerApps .row .colTextoPrincipal {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+
+#PowerApps .row .colTexto {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 500px;
+  width: 75%;
+  margin-bottom: 10px;
+}
+
+#PowerApps .row .colTexto .titulo {
+  margin: auto;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+#PowerApps .row .colTexto .descripcion {
+  margin: auto;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+#PowerApps .row .colImagen {
+  width: 25%;
+}
+
+#PowerApps .row .colImagen .carousel-inner .carousel-item img {
+  width: 10%;
+}
+
+#PowerBi, #unity {
+  margin: auto;
+}
+
+#PowerBi #carouselExampleIndicators, #unity #carouselExampleIndicators {
+  margin: auto;
+  width: 100%;
+}
+
+#PowerBi iframe, #unity iframe {
+  width: 620px;
+  height: 315px;
+}
+
+#PowerBi .row, #unity .row {
+  margin: 50px 0 50px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+#PowerBi .row #carouselExampleIndicators, #unity .row #carouselExampleIndicators {
+  width: 50%;
+}
+
+#PowerBi .row .colTextoPrincipal, #unity .row .colTextoPrincipal {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+
+#PowerBi .row .colTexto, #unity .row .colTexto {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 500px;
+  width: 75%;
+  margin-bottom: 10px;
+}
+
+#PowerBi .row .colTexto .titulo, #unity .row .colTexto .titulo {
+  margin: auto;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+#PowerBi .row .colTexto .descripcion, #unity .row .colTexto .descripcion {
+  margin: auto;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+#PowerBi .row .colImagen, #unity .row .colImagen {
+  width: 25%;
+}
+
+#PowerBi .row .colImagen .carousel-inner .carousel-item img, #unity .row .colImagen .carousel-inner .carousel-item img {
+  width: 10%;
+}
+
+#photoShop {
+  height: 600px;
+  padding: 5%;
+  width: 100%;
+  background-color: white;
+  margin: auto;
+}
+
+#photoShop div {
+  margin: auto;
+}
+
+#photoShop div img {
+  width: 90%;
+}
+
+/*FOOTER*/
+footer {
+  height: 150px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+footer #col1 {
+  padding: 10px;
+  font-size: 35px;
+  font-family: 'Cookie', cursive;
+}
+
+footer #col3 {
+  padding: 10px;
+}
+
+footer #col3 img {
+  width: 60px;
+  position: relative;
+  top: 40%;
+}
+
+/*RESPONSIVE*/
+@media screen and (max-width: 1200px) {
+  #AlgunosTrabajos {
+    height: 820px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #AlgunosTrabajos {
+    height: 1300px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  #Index {
+    height: 880px;
+  }
+}
+
+/*320px.
+480px.
+600px.
+768px.
+900px.
+1024px.
+1200px.*/
+/*# sourceMappingURL=estilos.css.map */

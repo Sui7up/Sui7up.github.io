@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Practica1</title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		section{
+			margin: auto;
+			text-align: center;
+		}
+
+		legend{
+			text-align: center;
+			background-color:rgba(0,0,0,0.7);
+		}
+
+		fieldset{
+			margin: auto;
+			background-color: rgba(0,0,0,0.7);
+			text-align: center;
+		}
+
+		form{
+			text-align: center;
+		}
+
+		#canvas{
+			display: none;
+		}
+		
+		#mensajeDNI, #mensajePedidoMinimo{
+			display: none;
+			color: red;
+		}
+
+		.columna{
+			margin-top: 20px;
+			width: 20%;
+			display: inline-block;
+			vertical-align: middle;
+			text-align: left;
+		}
+
+		.producto{
+			width: 30%;
+			display: inline-block;
+		}
+
+		form img{
+			width: 100%;
+			background-color: rgba(0,0,0,0.2);
+		}
+
+		#logo{
+			width: 25%;
+		}
+
+		body{
+			color: white;
+			background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(IMAGENES/fondo.jpg); 
+			background-size: 100%,
+		}
+
+		#seccionCanvas{
+			margin: auto;
+			width: 50%;
+		}
+
+		.derecha{
+			text-align: right;
+		}
+
+		.boton{
+			font-size: 20px;
+			background-color: rgb(184,18,35);
+			color: white;
+			margin: 10px 50px;
+		}
+	</style>
+</head>
+<body>
+
+	<section id="seccionCanvas">
+		<canvas id="canvas" width="600" height="125">Este elemento canvas no se visualiza en tu navegador
+		</canvas>
+	</section>
+
+	<section>
+		<img id="logo" src="IMAGENES/L1.png" id="foto">
+	</section>
+
+	<form  id ="form" action="" >
+		<div id="parte1">
+			<fieldset  style="width: 80%">
+
+				<legend>
+					<h1>PEDIDO</h1>
+				</legend>
+
+				<div class="columna">
+					<label id="nombre" >Nombre: </label>
+					<br><br>
+					<label id="nif">NIF (ej: 11654323-Q): </label>
+					<br><br>
+					<label id="direccion">Dirección: </label>
+					<br><br>
+					<label id="telefono">Teléfono (9-13 números) : </label>
+					<br><br>
+					<label id="email">Email: </label>
+					<br><br>
+				</div>
+
+				<div class="columna derecha">
+					<input id ='0' type="text" size="7" required="aa" >
+					<br><br>
+					<input  id='1' type="text" size="7" pattern="[0-9]{8}-[A-Za-z]{1}" required >
+					<label id="mensajeDNI"> La letra de ese DNI no concuerda con su número</label>
+					<br><br>
+					<input id ="2" type="text" size="7" required >
+					<br><br>
+					<input id ="3" type="text" size="7" required pattern="[0-9]{9,13}">
+					<br><br>
+					<input id ="4" type="email" size="7" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" > 
+					<br><br>	
+				</div>
+			
+				<!-- producto1 -->
+				<div id="productos">
+					<div class="producto">
+						<img src="IMAGENES/Catan.png"  alt="">
+						<label id="p1Descripcion">Catan es un juego de mesa para toda la familia que se ha convertido en un fenómeno mundial. Desde su aparición en Alemania ha vendido más que muchos de los juegos más tradicionales. Se trata de un juego que aúna la estrategia, la astucia y la capacidad para negociar y en el que los jugadores tratan de colonizar una isla, Catán.</label>
+						<br><br>
+						<label id="p1Precio"><h3>Precio: 25€</h3></label>
+						<br>
+						<label id="p1Unidades">¿Cuantas unidades desea comprar? </label>
+						<input id ="p1UnidadesV" value= "0"  min="0" pattern="[0-9]{1,5}"  type="text" size="1" required>
+					</div>
+					<div class="producto">
+						<img src="IMAGENES/virus.png" alt="">
+						<label id="p2Descripcion">VIRUS! El juego de cartas más contagioso. Tu misión consiste en enfrentarte con arrojo a la pandemia y competir por ser el primero en erradicar los virus logrando aislar un cuerpo sano para evitar la propagación de las terribles enfermedades. Para ello deberas tener en tu lado del campo cuatro órganos sanos, uno de cada clase</label>
+						<br><br>
+						<label id="p2Precio"><h3>Precio: 13€</h3></label>
+						<br>
+						<label id="p2Unidades">¿Cuantas unidades desea comprar? </label>
+						<input id ="p2UnidadesV" value= "0"  min="0" pattern="[0-9]{1,5}"  type="text" size="1" required>
+					</div>
+					<div class="producto">
+						<img src="IMAGENES/samurai.png" alt="">
+						<label id="p3Descripcion">"Los astutos ninjas intentan subvertir el orden del imperio por todos los medios. La hoja de la katana reluce en el campo de batalla. Un solitario ronin trama su venganza. Samurai Sword es un juego independiente de la línea BANG, en el que cada juagdor debe deducir el rol de los demas mientras oculta el suyo, y jugar a corde a eso.
+						</label>
+						<br><br>
+						<label id="p3Precio"><h3>Precio: 20€</h3></label>
+						<br>
+						<label id="p3Unidades">¿Cuantas unidades desea comprar? </label>
+						<input id ="p3UnidadesV" value= "0" min="0" pattern="[0-9]{1,5}" type="text" size="1" required>
+					</div>
+				</div>
+
+				<label id="mensajePedidoMinimo"> Debes elegir al menos 1 producto</label>
+
+				<br>
+				<input class= "boton" id ="reset" type="reset" size="7" value="Vaciar formulario" >
+			 	<button class= "boton" type="submit">Generar Factura</button>
+				<br>
+
+			</fieldset>
+			<br>
+		</div>
+	</form>
+		
+<!-- parte del banner -->
+	
+	<br>
+
+	<script>
+
+	form.addEventListener("submit",logSubmit);	
+	form.addEventListener("reset",logReset);	
+	
+	//VARIABLES GLOBALES
+	var canvas = document.getElementById("canvas");
+	var lienzo = canvas.getContext("2d");
+	var foto=1;
+	var tiempo=0;
+	var vacio =0;
+	var	minimo1Articulo = true;
+	
+	//FUNCIONES
+
+	//FUNCION QUE OCULTA LOS MENSAJE SDE ERROR AL VACIAR EL FORMULARIO
+	function logReset(event){
+		document.getElementById("mensajePedidoMinimo").style.display = "none";
+		document.getElementById("mensajeDNI").style.display = "none";
+	}
+
+	//FUNCION QUE OCULTA EL FORMULARIO Y CREA LA FACTURA
+	function logSubmit(event) {
+		event.preventDefault();
+
+		//COMPROBAR EL DNI
+		var DNI = document.getElementById("1").value;
+		var dniDividido = DNI.split("-");
+		var letrasDNI =['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+		var letraDniReal =letrasDNI[dniDividido[0]%23] ;
+
+		//COMPRUEBO QUE NO SE PUEDA ENVIAR EL FORMULARIO SIN PEDIR NADA
+		var numeroProdcutos = 3;
+		vacio =0;
+		minimo1Articulo = true;
+		for(x=0;x<numeroProdcutos;x++){
+			if(document.getElementById("p"+(x+1)+"UnidadesV").value ==0){
+				vacio++;
+			}
+		}
+		if (vacio == numeroProdcutos){
+			minimo1Articulo = false;
+		}
+
+		if(letraDniReal == dniDividido[1].toUpperCase() && minimo1Articulo){
+				
+			//OCULTAR EL FORMULARIO ANTERIOR Y EL LOGO
+			document.getElementById("form").style.display = 'none';
+			document.getElementById("logo").style.display = 'none';
+
+			//HACER VISIBLE EL CANVAS
+			document.getElementById("canvas").style.display = "block";
+
+			//RECOGER Y DAR FORMATO A LA FECHA
+			fecha = new Date();
+			año = fecha.getFullYear();
+			mes = fecha.getMonth() + 1;
+			dia = fecha.getDate();
+			fechaOk = dia + '/'+ mes + '/'+ año;
+
+			//ARRAYS CON DATOS
+			var arrayTitulos =["Nombre del cliente","NIF del cliente","Dirección del cliente","Teléfono del cliente","Email del cliente","Nombre del proveedor", "CIF del proveedor", "Dirección del proveedor", "Email del proveedor", "Número de la factura", "Fecha", "IVA a aplicar"];
+
+			var arrayValores =["Fernando Gómez","S0794867B","Calle Nueva 109","Info@juegosdemesa.com","1145",fechaOk, "21%"];
+
+			var arrayTitulosP =["catán","virus","samurai"]; 
+
+			var arrayUnidades = new Array(3);
+			var arrayPrecios = [25,13,20];
+
+			//AÑADIR AL ARRAY DE VALORES LOS VALORES VARIABLES
+			for(var x=0; x<5;x++){
+				var a = document.getElementById(4-x).value;
+				arrayValores.unshift(a); 			
+			}
+
+			//CREAR UNA TABLA VACIA
+			var body = document.getElementsByTagName("body")[0];
+			var tabla = document.createElement("table");
+			var tBody = document.createElement("tBody");
+
+			// CREAR Y AÑADIR LAS FILAS CON LOS VALORES FIJOS
+			for (var x = 0; x < 12; x++) {
+				if(x ==0){
+					crearFila("DATOS DEL CLIENTE", "", tBody, "#4d4e62","#4d4e62", "white", 30, "50px", "500px", "400px");
+				}
+				if(x ==4){
+					crearFila("DATOS DE LA EMPRESA", "", tBody, "#4d4e62" ,"#4d4e62", "white", 30, "50px", "500px","400px");
+				}
+			  	crearFila(arrayTitulos[x], arrayValores[x], tBody, "#cfd0d7", "#ffffff","black", 15, "25px","500px", "400px", );
+			}
+
+			//CREAR Y AÑADIR LAS FILAS RELACIONADAS CON LOS PRODUCTOS, ADEMAS DE SUMAR EL PRECIO TOTAL
+			var precioTotal = 0;
+			crearFila("PRODUCTOS", "", tBody, "#4d4e62" ,"#4d4e62", "white", 30, "50px", "500px", "400px" );
+			for(var x=0 ;x<3; x++){
+				arrayUnidades[x] = document.getElementById("p"+(x+1)+"UnidadesV").value;
+				if (arrayUnidades[x]!=0){
+					crearFila(arrayTitulosP[x] +" "+ arrayUnidades[x] + " unidades",(arrayUnidades[x] * arrayPrecios[x]).toFixed(2) + " €" , tBody, "#cfd0d7", "#ffffff","black", 15, "25px", "400px");
+				    precioTotal+=arrayUnidades[x]* arrayPrecios[x];
+				}
+			}
+
+			//AÑADIR FILAS PRECIO E IVA
+			crearFila("IVA", (precioTotal* 0.21).toFixed(2)  + " €", tBody, "#b6b6c2", "#b6b6c2","black", 15, "25px", "500px","400px");
+			crearFila("PRECIO SIN IVA", (precioTotal* 0.79).toFixed(2) + " €", tBody, "#b6b6c2", "#b6b6c2","black", 15, "25px", "500px","400px");
+			crearFila("PRECIO TOTAL", precioTotal.toFixed(2) + " €", tBody, "#b6b6c2", "#b6b6c2","black", 15, "25px", "500px","400px");
+			
+			//AÑADIR TABLA AL BODY
+			tabla.appendChild(tBody);
+			body.appendChild(tabla);
+			tabla.setAttribute("id", "tabla");
+
+			//DEJAR LA TABLA BONITA
+			tabla.style.margin ="auto";
+			tabla.style.color ="black";
+			tabla.style.backgroundColor= "#4d4e62";
+			tabla.style.textAlign = "left";
+
+
+			//LLAMAR A LA FUNCION QUE CONTROLA LA ANIMACIÓN
+			intervalo();
+
+		}else{
+			if(!minimo1Articulo){
+				document.getElementById("mensajePedidoMinimo").style.display = "block";
+				document.getElementById("mensajeDNI").style.display = "none";
+			}else{
+				document.getElementById("mensajePedidoMinimo").style.display = "none";
+				document.getElementById("mensajeDNI").style.display = "block";
+			}
+			
+		}
+	}
+
+	//CREA Y AÑADE FILAS
+	function crearFila(contenidoCelda1, contenidoCelda2, tBody, colorFondoC1, colorFondoC2, colorTexto, tamanio, alturaFila, anchuraFila,anchuraFila2){
+		var fila = document.createElement("tr");
+
+		var celda1 = document.createElement("td");
+		var textoCelda1 = document.createTextNode(contenidoCelda1);
+		celda1.appendChild(textoCelda1);
+		celda1.style.backgroundColor = colorFondoC1;
+		celda1.style.width = anchuraFila;
+		fila.appendChild(celda1);
+
+      	var celda2 = document.createElement("td");
+	    var textoCelda2 = document.createTextNode(contenidoCelda2);
+	    celda2.appendChild(textoCelda2);
+	    celda2.style.backgroundColor = colorFondoC2;
+	    celda2.style.width = anchuraFila2;
+	    fila.appendChild(celda2);
+
+	    fila.style.height = alturaFila;
+
+	    fila.style.color = colorTexto;
+	    fila.style.fontSize = tamanio;
+		tBody.appendChild(fila);
+	}
+
+	//CONTROLA EL INTERVALO DE LA ANIAMCION
+	function intervalo(){
+		setInterval(animacion, 100);
+	}
+	
+	//CONTROLA EL LOGO
+	function animacion(){
+		var imagen = new Image();
+		imagen.src = "IMAGENES/L"+ foto +".png";
+		imagen.addEventListener("load", verImagen, false);
+		tiempo++;
+		if(tiempo >48){
+			tiempo=0;
+		}
+	}	
+			 
+	//CONTROLA LA ANIMACIÓN
+	function verImagen(e){
+		imagen = e.target;
+		if(tiempo>30){
+			if(foto<18){
+				foto++;
+			}else{
+				foto=1;
+			}
+			lienzo.clearRect(0,0, canvas.width , canvas.height);
+			lienzo.drawImage(imagen, canvas.width/2 -75, canvas.height/2 -55,200,120);	
+		}else{
+			lienzo.clearRect(0,0, canvas.width , canvas.height);
+			lienzo.drawImage(imagen, canvas.width/2 -75, canvas.height/2 -55,200,120);	
+		}
+	}
+
+	function trunc (valor, posiciones = 0) {
+		var s = valor.toString();
+		var l = valor.length;
+		var decimalLength = s.indexOf('.') + 1;
+		var numStr = s.substr(0, decimalLength + posiciones);
+		return Number(numStr);
+	}
+
+	</script>
+</body>
+</html>

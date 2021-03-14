@@ -1,0 +1,14 @@
+/*MIXING*/
+@mixin h2Azules {
+    font-family: 'Monserrat', sans-serif;
+    font-weight: bold;
+    color: salmon;
+    font-size: 45px;
+}
+
+@mixin subtitulo {
+    font-family: 'Cookie', cursive;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 30px;
+}

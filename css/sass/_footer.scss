@@ -1,0 +1,21 @@
+/*FOOTER*/
+footer {
+    height: 150px;
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    color: white;
+    #col1 {
+        padding: 10px;
+        font-size: 35px;
+        font-family: 'Cookie', cursive;
+    }
+
+    #col3 {
+        padding: 10px;
+        img {
+            width: 60px;
+            position: relative;
+            top: 40%;
+        }
+    }
+}

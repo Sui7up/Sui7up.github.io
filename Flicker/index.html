@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id='redireccion' http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PracticaFireBase</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        body {
+            background-image: url("IMAGES/fondoAzul.jpg");
+            background-repeat: no-repeat;
+            background-size: 150%;
+            background-attachment: fixed;
+        }
+        
+        img {
+            height: 300px;
+            width: 300px;
+            display: inline;
+            margin: auto;
+        }
+        
+        .col-4 {
+            display: inline-block;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .corazon {
+            width: 25%;
+            height: 25%;
+            margin-top: -15px;
+            margin-bottom: 30px;
+        }
+        
+        #divOculto {
+            display: none;
+        }
+        
+        .menu {
+            background-image: url("IMAGES/madera.jpg");
+            background-size: 100%;
+            width: 80%;
+            margin: auto;
+            margin-top: 50px;
+            border: solid #431E03 3px;
+            border-radius: 25px;
+            color: white;
+            padding-bottom: 50px;
+        }
+        
+        button {
+            background-image: url("IMAGES/madera.jpg");
+            color: white;
+            font-weight: 800;
+        }
+        
+        #logo {
+            margin: 50px;
+            width: 303px;
+            height: 108px;
+        }
+        
+        .centrar {
+            text-align: center;
+        }
+        
+        .col-5 {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 3% 0% 0% 3%;
+        }
+        
+        span {
+            color: red;
+        }
+    </style>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        //GLOBALS
+        var arrayIdFavoritas = new Array();
+        var arrayRutaFavoritas = new Array();
+        var arrayTituloFavoritas = new Array();
+        //ejecuto la funcion inicial
+        $(document).ready(Inicio);
+
+        function Inicio() {
+
+            getFav();
+            //asigno a los botones funciones
+            $("#botonFav").click(function() {
+                mostrarFav();
+            });
+            $("#boton").click(function() {
+                realizarBusqueda();
+            });
+        };
+
+        function getFav() {
+            $("#divOculto").load("cargarFavoritos.php", recogerIdFav);
+        }
+
+        function recogerIdFav() {
+            //vacio el array
+            arrayIdFavoritas = [];
+            arrayRutaFavoritas = [];
+            arrayTituloFavoritas = [];
+            //añado al array mis imagenes favoritas
+            $(".fav").each(function() {
+                arrayIdFavoritas.push($(this).html());
+            });
+            $(".fav2").each(function() {
+                arrayRutaFavoritas.push($(this).html());
+            });
+            $(".fav3").each(function() {
+                arrayTituloFavoritas.push($(this).html());
+            });
+        }
+
+        function realizarBusqueda() {
+            texto = $("input").val();
+            if ($("input").val() != "") {
+                $.ajax({
+                    url: "https://api.flickr.com/services/rest/",
+                    dataType: "json",
+                    data: {
+                        method: "flickr.photos.search",
+                        api_key: "61826335fc33b7a32599df64a66ec74e",
+                        text: texto,
+                        format: "json",
+                        nojsoncallback: "1"
+                    },
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    method: "GET",
+                    timeout: 1000,
+                    success: function(data, textStatus, jqXHR) {
+                        console.log(data);
+                        displayImages1(data);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus)
+                    }
+                });
+            }
+        }
+
+        function displayImages1(data) {
+            var contenido = "";
+            var imagenCorazon;
+            var fav;
+            $.each(data.photos.photo, function(i, item) {
+                var titulo = item.title;
+                if (item.title == null) {
+                    titulo = "SIN TÍTULO"
+                }
+                var photoID = item.id;
+                var tituloSinEspacios = item.title.replace(/\s/g, "_");
+                fav = false;
+                for (var x = 0; x < arrayIdFavoritas.length; x++) {
+                    if (photoID == arrayIdFavoritas[x]) {
+                        fav = true;
+                    }
+                }
+                if (fav) {
+                    imagenCorazon = "IMAGES/corazonRelleno.png"
+                } else {
+                    imagenCorazon = "IMAGES/corazon.png"
+                }
+                lat = item.latitude;
+                long = item.longitude;
+                var photoURL = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
+                imagen = '<img src="' + photoURL + '">';
+                contenido += "<div class='col-4'>" + imagen + "<p><h3>" + titulo + "</h3></p><img src=" + imagenCorazon + " class='corazon' id=" + item.id + " alt=" + photoURL + " name=" + tituloSinEspacios + "><br><br><br></div>";
+            });
+            document.getElementById("galeria").innerHTML = contenido;
+            $(".corazon").click(favorito);
+        }
+
+        function favorito() {
+            //preparo las variables que enviare
+            var ID = $(event.target).attr("id");
+            var ruta = $(event.target).attr("alt");
+            var titulo = $(event.target).attr("name");
+            var agregar = false;
+            //dependiendo del estado hago una u otra accion
+            if ($(event.target).hasClass("favorito")) {
+                event.target.src = "IMAGES/corazon.png";
+                agregar = false;
+            } else {
+                agregar = true;
+                event.target.src = "IMAGES/corazonRelleno.png";
+            }
+            //cambio la clase
+            $(event.target).toggleClass("favorito");
+
+            //envio los datos
+            $.ajax({
+                type: "POST",
+                data: {
+                    "id": ID,
+                    "ruta": ruta,
+                    "titulo": titulo,
+                    "accion": agregar
+                },
+                url: "AddFav.php",
+                success: function(data) {
+                    console.log(data);
+                },
+                failure: function(errMsg) {
+                    console.log(errMsg);
+                }
+            });
+
+            // Agregar(ID, ruta, titulo);
+
+            //actualizo los fav
+            getFav();
+        }
+
+        function mostrarFav() {
+            var contenidoFavoritas = "";
+            var titulo;
+            for (var x = 0; x < arrayRutaFavoritas.length; x++) {
+                imagen = '<img src="' + arrayRutaFavoritas[x] + '">';
+                titulo = arrayTituloFavoritas[x];
+                tituloSinEspacios = titulo.replace(/_/g, " ");
+                contenidoFavoritas += "<div class='col-4'>" + imagen + "<p><h3>" + tituloSinEspacios + "</h3></p></div>";
+            }
+            document.getElementById("galeria").innerHTML = contenidoFavoritas;
+        }
+    </script>
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="menu" id="menu">
+        <div class="row">
+            <div class="col-12 centrar">
+                <h1>Flick<span>r</span> de Gonzalo Rementería</h1>
+            </div>
+
+            <div class="col-5 centrar">
+                <img id="logo" src="IMAGES/LogoGRH.jpg" alt="">
+            </div>
+            <div class="col-5">
+                <p>
+                    <h2>Inserte el tema del que desea obtener las fotografías:</h2>
+                </p>
+                <input id="input" type="text">
+                <button id="boton">BUSCAR</button><br><br>
+                <button id="botonFav">IR A FAVORITOS</button>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div name="buscador" id="galeria">
+    </div>
+    <div id="divOculto">
+
+    </div>
+</body>
+
+</html>
+
+
+
+<!-- <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+ The core Firebase JS SDK is always required and must be listed first 
+<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+<script>
+    const firebase = require("firebase");
+    // Required for side-effects
+    require("firebase/firestore");
+
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCRcU1Tx-OuRQa0y4vSALto7XG9lToKuLM",
+        authDomain: "gallerygonzalorementeria.firebaseapp.com",
+        databaseURL: "https://gallerygonzalorementeria.firebaseio.com",
+        projectId: "gallerygonzalorementeria",
+        storageBucket: "gallerygonzalorementeria.appspot.com",
+        messagingSenderId: "213502856818",
+        appId: "1:213502856818:web:6fca4a171e0cc8391a3ceb",
+        measurementId: "G-SJD3515E85"
+    };
+    // Initialize Firebase
+
+
+
+
+
+    function Agregar(idV, rutaV, tituloV) {
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore();
+        var documentoBBDD = db.doc('favoritas/favoritas');
+        documentoBBDD.add({
+                id: idV,
+                ruta: rutaV,
+                titulo: tituloV
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+    } -->
