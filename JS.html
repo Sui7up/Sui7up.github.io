@@ -1,0 +1,127 @@
+<html lang='es'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Portafolios de Gonzalo Rementería</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+    integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  <link rel='stylesheet' href='css/estilos.css'>
+  <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js '
+    integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo '
+    crossorigin='anonymous '></script>
+  <script src='jquery-1.7.2.min.js'></script>
+  <script type='text/javascript' src='jquery.mlens-1.2.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js '
+    integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 '
+    crossorigin='anonymous '></script>
+  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js '
+    integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM '
+    crossorigin='anonymous '></script>
+  <script src='hover.js'></script>
+</head>
+
+<body>
+  <!-- todo este header en algun momentio lo sustituire por un include -->
+  <header class='row'>
+    <div class='nombre Font_Cookie col-12'>
+      <span>Gonzalo Rementería</span>
+    </div>
+    <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+      <a class='navbar-brand' href='#'>MENU</a>
+      <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarText'
+        aria-controls='navbarText' aria-expanded='false' aria-label='Toggle navigation'>
+        <span class='navbar-toggler-icon'></span>
+      </button>
+      <div class='collapse navbar-collapse' id='navbarText'>
+        <ul class='navbar-nav mr-auto'>
+          <li class='nav-item active'>
+            <a class='nav-link' href='index.html'>Inicio</a>
+          </li>
+          <li class='nav-item'>
+            <a class='nav-link' href='AlgunosTrabajos.html'>Algunos trabajos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="JS">
+    <div id="row1" class="row">
+      <div class="colTextoPrincipal col-12">
+        En esta sección muestro algunos de los trabajos que realicé durante el Grado. Por tanto hay que tener en cuenta
+        que la calidad dista mucho de ser la esperada en un entorno profesional, puesto que estaba empezando a conocer
+        estas tecnologias (html, css, scss, boostrap, Js, Jquery, wordpress).Además están pensados para ser vistos en un
+        monitor y no en un movil o tablet. No obstante espero que sirvan como prueba de que tengo ciertos conocimientos
+        en ellas. Otra prueba es este portafolios, hecho de modo artesanal (sin usar wordpress, joomla, ni ningún otro
+        framework) algo que a día de hoy me parece una locura, pero quería que este fuese así.
+      </div>
+    </div>
+    <div id="row2" class="row">
+      <div class="colTexto col-12 col-lg-6 centrado">
+        <div class="titulo">
+          Space Race
+        </div>
+        <div class="descripcion">
+          Se trata de un sencillo juego hecho con JS, en el que se elige el número de participantes, las apuestas y las
+          naves de cada uno, y empieza una carrera por el espacio hasta la meta, un laser entre dos balizas.
+          Originaramente se guardaban los datos en una base de datos local usando php. A día de hoy el codigo funciona,
+          pero no he desplegado la BBDD.
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 centrado">
+        <a href="SpaceRace/index.html"><img id="JS" src="images/SpaceRacing.PNG"
+            alt="JS logo" /></a>
+      </div>
+    </div>
+    <div id="row3" class="row">
+      <div class=" colTexto col-12 col-lg-6 centrado">
+        <div class="titulo">
+          Flicker
+        </div>
+        <div class="descripcion">
+          Este otro trabajo muestra un galería que se conecta a Flicker para mostrar las fotos que encuentre según los
+          datos que hayamos introducido. Del mismo modo que en el caso anterior la sección de favoritos no se muestra
+          dado que no está desplegada la BBDD.
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 centrado">
+        <a href="Flicker/index.html"><img id="JS" src="images/flicker.PNG" alt="JS logo" /></a>
+      </div>
+    </div>
+    <div id="row4" class="row">
+      <div class="colTexto col-12 col-lg-6  centrado">
+        <div class="titulo">
+          Formulario tienda de juegos de mesa
+        </div>
+        <div class="descripcion">
+          Aqui se muestra un clásico ejercicio de formulario en el que se validan los datos para luego trabajar con
+          ellos. Además de una pequeña animación.
+        </div>
+
+      </div>
+      <div class=" col-12 col-lg-6 centrado">
+        <a href="../Formulario_Jumanji/index.html"><img id="JS" src="images/Jumanji.JPG"
+            alt="JS logo" /></a>
+      </div>
+
+    </div>
+  </main>
+
+
+  <footer class='row'>
+    <div id="col1" class='col-12  col-lg-4 Font_Cookie centrado'>
+      <span>Bienvenido a mi portafolios </span>
+    </div>
+    <div id="col2" class='col-6  col-lg-4 centrado'>
+      <span>grementeria.herranz@gmail.com</span>
+    </div>
+    <div id="col3" class='col-6  col-lg-4 derecha'>
+      <span><img src='portafolios/images/Linkedin-logo.png' alt='logo de linkedin'></span>
+
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url("IMAGES/espacio2.jpg");
+    /* background-size: 150%; */
+    background-repeat: repeat;
+}
+
+img {
+    width: 150px;
+    margin: 50px;
+}
+
+.contenedor {
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    text-align: center;
+    z-index: 2;
+}
+
+.titulo {
+    color: chartreuse;
+    font-size: 75px;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 50px;
+}
+
+.subtitulo {
+    color: white;
+    font-size: 25px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.border {
+    border: 5px solid chartreuse;
+}
+
+.hueco {
+    background-color: rgba(0, 0, 0, 0);
+    color: chartreuse;
+    text-align: center;
+}
+
+#contenedorEstadisticas {
+    display: none;
+}
+
+table {
+    margin: 0 auto;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}

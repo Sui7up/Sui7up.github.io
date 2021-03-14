@@ -1,0 +1,256 @@
+<!-- https://wireframe.cc/0vmKgo -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id='redireccion' http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fondoAnimado.css">
+    <link rel="stylesheet" href="style_p3.css">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        //GLOBALES
+        var numPlayer;
+        var numPlayerL;
+        var ArrayUser = new Array();
+        var ArrayApuestas = new Array();
+        var ArrayNaves = new Array();
+        var fin = false;
+        var ArrayGanador = new Array();
+        var ganador;
+        var cantidadApostada;
+        var naveUsada;
+
+        //MENU ELEGIR NAVE
+        var tituloP4_1 = "<div class='row'><div class='col-12'><p class='titulo'>";
+        var tituloP4_2 = " elija su nave</p></div></div>";
+        var colNave1 = "<div class='col-3'><p class='subtitulo'>Nave ";
+        var colNave2 = "</p><img src='IMAGES/nave";
+        var colNave3 = ".png' alt='una nave'></img></div>";
+        var noNave = true;
+
+        //MENU APUESTAS
+        var titulo = "<div class='row'><div class='col-12'><p class='titulo'>jugadores elijan personaje y hagan sus apuestas</p></div></div>";
+        var menuP3_1 = "<div class='row'><div class='col-6'><p class='subtitulo'>Jugador ";
+        var menuP3_2 = " </p><input class='usuarios' type='text' name='user";
+        var menuP3_3 = "' pattern='[A-Za-z0-9]{1,50}' required></div><div class='col-6 marginB'><p class='subtitulo'>Introduzca su apuesta</p><input name='apuesta";
+        var menuP3_4 = "' type='number' min='10' max='500'  value='10'></div></div><br>";
+        var formularioP3_1 = "<form id='contacto' action='P4_procesador.php' method='POST'>";
+        var formularioOculto = "<input type='hidden' name='oculto' value='";
+        var formularioP3_2 = "'><button class='titulo border hueco'>Elegir Nave </button></form>";
+
+        //CARRERA
+        var Nave1 = "<img class='imgNave' id='N";
+        var Nave2 = "' src='IMAGES/";
+        var Nave3 = ".png'>";
+
+
+        $(document).ready(Inicio);
+
+        function Inicio() {
+            //recogo el numero de jugadores
+            numPlayer = getUrlVars()["numPlayer"];
+            numPlayerL = numPlayer;
+            //llamo a la funcion que imprime el menu con los imputs
+            menuInput();
+        }
+
+        //CARGO EL MENU DE NOMBREA Y APUESTAS EN FUNCION DEL NUMERO DE JUGADORES
+        function menuInput() {
+            var contenido = titulo;
+            contenido += formularioP3_1;
+            for (var x = 0; x < numPlayer; x++) {
+                contenido += (menuP3_1 + (x + 1) + menuP3_2 + x + menuP3_3 + x + menuP3_4);
+            }
+            contenido += formularioOculto + numPlayer + formularioP3_2;
+            document.getElementById("con").innerHTML = contenido;
+            $("button").click(comprobarPatron);
+        }
+
+        //COMPRUEBO QUE LOS DATOS INSERTADOS SEAN CORRECTOS
+        function comprobarPatron() {
+            event.preventDefault();
+            //agrega a los arrays los valore de los input
+            for (var x = 0; x < $(".usuarios").length; x++) {
+                var valorInputUser = $("input[name*='user" + x + "']").val();
+                var valorInputApuestas = parseInt($("input[name*='apuesta" + x + "']").val());
+                ArrayUser[x] = valorInputUser;
+                ArrayApuestas[x] = valorInputApuestas;
+
+            }
+            //compruebo sus patrones, si no se cumplen mensaje de error1
+            var patronValido = true;
+            for (var x = 0; x < ArrayUser.length; x++) {
+                if ($("input[name*='user" + x + "']").val().match(/[A-Za-z0-9]{1,10}/)) {} else {
+                    patronValido = false;
+                }
+                if ($("input[name*='apuesta" + x + "']").val().match(/[0-9]{1,4}/)) {} else {
+                    patronValido = false;
+                }
+            }
+
+            //compruebo si estan repetidos, si lo estan, mensaje de error 2
+            if (patronValido) {
+                var repetido = 0;
+                for (var x = 0; x < ArrayUser.length; x++) {
+                    for (var y = 0; y < ArrayUser.length; y++) {
+                        if (ArrayUser[x] == ArrayUser[y]) {
+                            repetido++;
+                        }
+                    }
+                }
+                // si todo ok, imprimo la pantalla de eleccion de naves
+                if (repetido == ArrayUser.length) {
+                    document.getElementById("mensajeError").innerHTML = "";
+                    elegirNave();
+                } else {
+
+                    document.getElementById("mensajeError").innerHTML = "<p class='error'>El nombre de los jugadores no puede repetirse</p>";
+                }
+            } else {
+                document.getElementById("mensajeError").innerHTML = "<p class='error'>La longitud de los nombre debe estar entre 1 y 10 caracteres y solo pueden contener números y letras</p>";
+            }
+        }
+
+        //CARGO EL MENU DE ELEGIR NAVE
+        function elegirNave() {
+            numPlayerL = numPlayerL - 1;
+            contenido = "";
+            var nave = $(event.target).attr("src");
+            if (numPlayerL >= 0) {
+                contenido += tituloP4_1 + (ArrayUser[(numPlayer - numPlayerL) - 1]) + tituloP4_2;
+                for (var x = 0; x < 3; x++) {
+                    contenido += "<div class='row marginB'>";
+                    for (var y = 1; y < 5; y++) {
+                        contenido += colNave1 + ((x * 4) + y) + colNave2 + ((x * 4) + y) + colNave3;
+                    }
+                    contenido += "</div>";
+                }
+                document.getElementById("con").innerHTML = contenido;
+                $("img").click(elegirNave);
+                if (noNave) {
+                    noNave = false;
+                } else {
+                    ArrayNaves[(numPlayer - numPlayerL) - 2] = nave.substring(7, nave.length - 4);
+                }
+            } else {
+                ArrayNaves[(numPlayer - numPlayerL) - 2] = nave.substring(7, nave.length - 4);
+                empezarCarrera(ArrayNaves[(numPlayer - numPlayerL) - 2]);
+            }
+        }
+
+        //IMPRIMO EN PANTALLA EL CONTENIDO DE LA CARRERA E INICIO EL SETINTERCAL QUE CONTROLA EL MOVIMIENTO
+        function empezarCarrera() {
+            contenido = "";
+            $("#con").removeClass("contenedor");
+            $("ul").removeClass("cuadrados");
+            $('body').css('background-image', 'url(IMAGES/espaciofondo.gif)');
+            for (var x = 0; x < numPlayer; x++) {
+                contenido += Nave1 + x + Nave2 + ArrayNaves[x] + Nave3;
+            }
+            contenido += "<div class='meta'></div><img id='Nmeta1' src='IMAGES/naveMeta.png'><img id='Nmeta2' src='IMAGES/naveMeta.png'>";
+            document.getElementById("con").innerHTML = contenido;
+            setInterval(moverse, 10);
+        }
+
+        //LAS NAVES SE MUEVEN EN ALTURA Y POSICION
+        function moverse() {
+            for (var x = 0; x < numPlayer; x++) {
+                if (!fin) {
+                    xActual = parseInt($("#N" + x).css("left").substring(0, $("#N" + x).css("left").length - 2), 10);
+                    yActual = parseInt($("#N" + x).css("top").substring(0, $("#N" + x).css("top").length - 2), 10);
+                    $("#N" + x).css("left", xActual + aleatorio(7, -5) + "px");
+                    $("#N" + x).css("top", yActual + aleatorio(4, -4) + "px");
+                    if (xActual >= 1010 && !fin) {
+                        fin = true;
+                        mostrarGanador(x);
+                    }
+                }
+
+            }
+        }
+
+        //SE MUESTRA EL GANADOR
+        function mostrarGanador(x) {
+            var ganador1 = "<div class='ganador border'><img class='imgGanador' src='IMAGES/";
+            var ganador2 = ".png'><p class='titulo'>";
+            var ganador3 = " ha ganado ";
+            var ganador4 = " monedas</p><a href='index.html'><div class='subtitulo'>Volver al inicio</div></a></div></div><div class='difuminarFondo'>";
+            var apuestaTotal = 0;
+            for (var y = 0; y < ArrayApuestas.length; y++) {
+                apuestaTotal += ArrayApuestas[y];
+            }
+
+            $("body").css("background-color", "rgba(92, 16, 122, 0.6)");
+            document.body.innerHTML += (ganador1 + ArrayNaves[x] + ganador2 + ArrayUser[x] + ganador3 + apuestaTotal + ganador4);
+            ArrayGanador.push(ArrayUser[x], ArrayApuestas[x], ArrayNaves[x], apuestaTotal);
+            $.ajax({
+                type: "POST",
+                data: {
+                    "naves": ArrayNaves,
+                    "usuarios": ArrayUser,
+                    "apuestas": ArrayApuestas,
+                    "ganador": ArrayGanador
+                },
+                url: "P4_procesador.php",
+                success: function(data) {
+                    console.log(data);
+                },
+                failure: function(errMsg) {
+                    console.log(errMsg);
+                }
+            });
+        }
+
+        //GENERO NUMEROS ALEATORIOS
+        function aleatorio(inferior, superior) {
+            var numPosibilidades = superior - inferior
+            var aleat = Math.random() * numPosibilidades
+            aleat = Math.round(aleat)
+            return parseInt(inferior) + aleat;
+        }
+
+        //RECOGE DATOS DE LA URL
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="con" class="contenedor">
+    </div>
+    <div id="mensajeError" class="contenedor">
+    </div>
+    <ul class="cuadrados">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>

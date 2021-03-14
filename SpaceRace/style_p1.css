@@ -1,0 +1,48 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url("IMAGES/espacio2.jpg");
+    background-size: 150%;
+    background-repeat: no-repeat;
+}
+
+img {
+    width: 400px;
+    margin: 50px;
+}
+
+.contenedor {
+    margin: auto;
+    margin-top: 350px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    text-align: center;
+    z-index: 2;
+}
+
+.titulo {
+    color: chartreuse;
+    font-size: 120px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.subtitulo {
+    color: white;
+    font-size: 40px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.titulo {
+    color: chartreuse;
+    font-size: 75px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.subtitulo {
+    color: white;
+    font-size: 40px;
+    font-family: 'Press Start 2P', cursive;
+}

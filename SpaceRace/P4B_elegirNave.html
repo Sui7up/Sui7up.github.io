@@ -1,0 +1,146 @@
+<!-- https://wireframe.cc/0vmKgo -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fondoAnimado.css">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        body {
+            background-image: url("IMAGES/espacio2.jpg");
+            background-size: 150%;
+            background-repeat: no-repeat;
+        }
+        
+        img {
+            width: 50%;
+        }
+        
+        .contenedor {
+            margin: auto;
+            padding-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 80%;
+            text-align: center;
+        }
+        
+        .titulo {
+            color: chartreuse;
+            font-size: 35px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .subtitulo {
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        .selectorP {
+            margin-top: 15px;
+        }
+        
+        .marginB {
+            margin-bottom: 50px;
+        }
+        
+        .borde {
+            border: 5px solid chartreuse;
+        }
+    </style>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(Inicio);
+        var titulo1 = "<div class='row'><div class='col-12'><p class='titulo'>jugador ";
+        var titulo2 = " elija su nave</p></div></div>";
+
+
+        var botonCarrera1 = "<div class='row'><div class='col-12'><a href='P4_elegirNave.html?numPlayer=";
+        var botonCarrera2 = "'><p class='titulo borde'>EMPEZAR CARRERRA</p></a></div></div>";
+
+
+        var colNave1 = "<div class='col-3'><p class='subtitulo'>Nave ";
+        var colNave2 = "</p><a href='P4_elegirNave.html?numPlayer=";
+        var colNave3 = "&numPlayerL=";
+        var colNave4 = "'><img src='IMAGES/nave";
+        var colNave5 = ".png' alt='una nave'> </a></div>";
+
+        var contenido;
+
+        var ArrayDatos = new Array();
+
+        function Inicio() {
+            generarNaves();
+
+        }
+
+        function generarNaves() {
+            contenido = "";
+            var numPlayer = getUrlVars()["numPlayer"];
+            if (getUrlVars()["numPlayerL"] != null) {
+                var numPlayerL = getUrlVars()["numPlayerL"] - 1;
+            } else {
+                var numPlayerL = getUrlVars()["numPlayer"] - 1;
+            }
+            contenido += titulo1 + (numPlayer - numPlayerL) + titulo2;
+            for (var x = 0; x < 3; x++) {
+                contenido += "<div class='row marginB'>";
+                for (var y = 1; y < 5; y++) {
+                    contenido += colNave1 + ((x * 4) + y) + colNave2 + numPlayer + colNave3 + numPlayerL + colNave4 + ((x * 4) + y) + colNave5;
+                }
+                contenido += "</div>";
+            }
+            document.getElementById("con").innerHTML = contenido;
+        }
+        //tendre que mandar con el a. a esta misma pagina, pero pasandole el numplayer-1 y la nave elegida, opcional
+
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="con" class="contenedor">
+
+
+    </div>
+    <ul class="cuadrados">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>

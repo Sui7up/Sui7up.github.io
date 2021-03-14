@@ -1,0 +1,70 @@
+<!-- https://wireframe.cc/0vmKgo -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="fondoAnimado.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fondoAnimado.css">
+    <link rel="stylesheet" href="style_p2.css">
+</head>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(Inicio);
+
+    function Inicio() {
+        //CARGO LAS ESTADISTICAS
+        $("#contenedorEstadisticas").load("P5_mostrarEstadisticas.php");
+
+        //PREPARAR EL BOTON DE VER Y OCULTAR  ESTADITICAS
+        $("#estadisticas").click(function(event) {
+            $("#contenedorEstadisticas").toggle();
+        });
+    }
+</script>
+
+<body>
+    <div class="contenedor">
+        <!-- <div class="titulo">SPACE RACING</div> -->
+        <div class="titulo">selecciona el número de jugadores</div>
+        <div class="row">
+            <div class="col-4 ">
+
+                <a href="P3B_menu2.html?numPlayer=2"> <img class="border" id="2" src="IMAGES/2player.png" alt=""> </a>
+                <p class="subtitulo">2 jugadores</p>
+            </div>
+            <div class="col-4 ">
+
+                <a href="P3B_menu2.html?numPlayer=3"> <img class="border" id="3" src="IMAGES/3player.png" alt=""> </a>
+                <p class="subtitulo">3 jugadores</p>
+            </div>
+            <div class="col-4 ">
+
+                <a href="P3B_menu2.html?numPlayer=4"> <img class="border" id="2" src="IMAGES/4player.png" alt=""> </a>
+                <p class="subtitulo">4 jugadores</p>
+            </div>
+            <div class="col-6 ">
+
+                <a href="P3B_menu2.html?numPlayer=5"> <img class="border" id="2" src="IMAGES/5player.png" alt=""> </a>
+                <p class="subtitulo">5 jugadores</p>
+            </div>
+            <div class="col-6 ">
+
+                <a href="P3B_menu2.html?numPlayer=6"> <img class="border" id="2" src="IMAGES/6player.png" alt=""> </a>
+                <p class="subtitulo">6 jugadores</p>
+            </div>
+        </div>
+        <button id='estadisticas' class='subtitulo border hueco'>Ver estadísticas </button>
+        <div id="contenedorEstadisticas" class="contenedor">
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

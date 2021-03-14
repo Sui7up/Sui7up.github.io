@@ -1,0 +1,167 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url("IMAGES/espacio2.jpg");
+    background-size: 150%;
+    background-repeat: no-repeat;
+}
+
+img {
+    width: 25%;
+}
+
+.contenedor {
+    margin: auto;
+    padding-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    text-align: center;
+}
+
+.mensajeError {
+    margin: auto;
+    padding-bottom: 20px;
+    width: 80%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+    color: chartreuse;
+    font-size: 35px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.subtitulo {
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.error {
+    color: red;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px;
+}
+
+.selectorP {
+    margin-top: 15px;
+}
+
+.marginB {
+    margin-bottom: 50px;
+}
+
+.border {
+    border: 5px solid chartreuse;
+}
+
+.hueco {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+img {
+    width: 50%;
+}
+
+.imgNave {
+    width: 10%;
+    display: block;
+}
+
+#N0,
+#N1,
+#N2,
+#N3,
+#N4,
+#N5 {
+    left: 10px;
+}
+
+#N0 {
+    z-index: 1;
+    position: absolute;
+    top: 150px;
+}
+
+#N1 {
+    z-index: 2;
+    top: 300px;
+    position: absolute;
+}
+
+#N2 {
+    z-index: 3;
+    top: 450px;
+    position: absolute;
+}
+
+#N3 {
+    z-index: 4;
+    top: 600px;
+    position: absolute;
+}
+
+#N4 {
+    z-index: 5;
+    top: 750px;
+    position: absolute;
+}
+
+#N5 {
+    z-index: 6;
+    top: 900px;
+    position: absolute;
+}
+
+#Nmeta1 {
+    width: 5%;
+    position: absolute;
+    left: 1100px;
+}
+
+#Nmeta2 {
+    width: 5%;
+    position: absolute;
+    left: 1100px;
+    top: 95%;
+}
+
+.meta {
+    background-color: red;
+    height: 100%;
+    width: 5px;
+    position: absolute;
+    left: 1135px;
+}
+
+.difuminarFondo {
+    align-content: center;
+    background-color: rgba(0, 25, 10, 0.6);
+    height: 2000px;
+    width: 3000px;
+    top: -50%;
+    position: absolute;
+    z-index: -50;
+}
+
+.ganador {
+    align-content: center;
+    margin-left: 20%;
+    ;
+    /* margin-top: 15%; */
+    text-align: center;
+    height: 50%;
+    width: 25%;
+    background-color: rgba(92, 16, 122, 0.6);
+    z-index: -50;
+}
+
+.imgGanador {
+    margin: auto;
+    height: 75%;
+    width: 75%;
+    z-index: -50;
+}
